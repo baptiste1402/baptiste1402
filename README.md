@@ -29,3 +29,23 @@ On obtient donc :
 
 <img width="459" alt="Capture d’écran 2024-12-07 à 15 40 42" src="https://github.com/user-attachments/assets/9114f5ef-23fe-4aa1-ad83-86d66ddbf124"> 
 <img width="741" alt="Capture d’écran 2024-12-07 à 15 41 52" src="https://github.com/user-attachments/assets/c60d0ac9-c0a6-4475-83f9-cf491ff46620"> 
+
+## 4- Affichage du code de retour (ou du signal) de la commande précédente dans le prompt :
+
+Pour cela on modifie encore notre fonction exeCommand, On rajoute des conditions avec des if dans la partie du père. Pour cela on utilise WIFEXITED si le fils c'est terminé normalement et on renvoie la valeur avec WEXITSTATUS, on a exit 0 pour une commande existante sinon le programme renvoie exit 1. On utilise dans un autre if WIFSIGNALED si le fils c'est terminé à cause d'un signal et on renvoie le numéro du signal avec WTERMSIG.
+On a alors dans le terminal : 
+<img width="741" alt="Capture d’écran 2024-12-07 à 16 04 14" src="https://github.com/user-attachments/assets/b89ffd56-c767-408b-a98c-56822e48a7a3">
+
+Pour tester lorsqu'on termine le fils par un signal  : 
+
+<img width="479" alt="Capture d’écran 2024-12-07 à 16 09 03" src="https://github.com/user-attachments/assets/f0c90df8-b637-4613-a670-758e7d9293e9">
+
+Puis on ouvre un nouveau terminal pour arrêter le processus fils : 
+
+<img width="564" alt="Capture d’écran 2024-12-07 à 16 12 33" src="https://github.com/user-attachments/assets/93886386-3585-4094-96b8-983c74126938">
+
+On a alors bien dans le terminal principal :
+
+<img width="280" alt="Capture d’écran 2024-12-07 à 16 13 26" src="https://github.com/user-attachments/assets/66a1a41f-3b38-43fc-a787-7c9309564dad">
+
+
