@@ -36,7 +36,7 @@ Pour cela on modifie encore notre fonction exeCommand, On rajoute des conditions
 On a alors dans le terminal : 
 <img width="741" alt="Capture d’écran 2024-12-07 à 16 04 14" src="https://github.com/user-attachments/assets/b89ffd56-c767-408b-a98c-56822e48a7a3">
 
-Pour tester lorsqu'on termine le fils par un signal  : 
+Pour tester lorsqu'on termine le fils par un signal on écrit avant execlp : 
 
 <img width="479" alt="Capture d’écran 2024-12-07 à 16 09 03" src="https://github.com/user-attachments/assets/f0c90df8-b637-4613-a670-758e7d9293e9">
 
@@ -48,4 +48,20 @@ On a alors bien dans le terminal principal :
 
 <img width="280" alt="Capture d’écran 2024-12-07 à 16 13 26" src="https://github.com/user-attachments/assets/66a1a41f-3b38-43fc-a787-7c9309564dad">
 
+## 5- Mesure du temps d’exécution de la commande en utilisant l’appel clock_gettime : 
+
+Pour mesesure en interval de temps on utilise struct timespec. Le temps est stocké en ns et en s or on veut le temps ms, on a du donc bien penser à convertir en ms. On obtient alors dans le terminal en plus de l'affichage du code retour le temps que met la commande à s'exécuter.
+
+<img width="745" alt="Capture d’écran 2024-12-08 à 16 28 18" src="https://github.com/user-attachments/assets/cfd6cb02-74c9-433c-b94c-3595419699ba">
+
+## 6- Exécution d’une commande complexe : 
+
+Pour cela on doit séparer les commandes, pour ce faire on va écrit une nouvelle fonction SeparateCommande. Qui va nous permettre par exemple de séparer "ls -l" au niveau de l'espace. On va alors récupérer indépendammennt la commande "ls" et "-l" dans un tableau de char. Afin de séparer les commandes on va utiliser STRTOK qui va permettre d'extraire un à un les éléments d'une chaîne séparer par un caractère choisis ici la barre espace. 
+Il faut ensuite également penser à modifier les arguments que prends la fonction exeCommand : 
+exeCommand(char* buf, ssize_t commande_size) => exeCommand(char** buf, ssize_tcommande_size)
+De plus on veut réaliser des commandes complexes on doit donc modifier execlp par execvp.
+Enfin on a du faire quelque modification dans la fonction main quand on appelle la fonction exeCommand qui est maintenant appelé après la fonction SeparateCommande.
+Au final on  a bien : 
+
+<img width="618" alt="Capture d’écran 2024-12-08 à 16 47 37" src="https://github.com/user-attachments/assets/f713e85d-96c6-4899-a99c-9f4236b4b0b7">
 
