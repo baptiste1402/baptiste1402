@@ -65,3 +65,23 @@ Au final on  a bien :
 
 <img width="618" alt="Capture d’écran 2024-12-08 à 16 47 37" src="https://github.com/user-attachments/assets/f713e85d-96c6-4899-a99c-9f4236b4b0b7">
 
+## 7- Gestion des redirections vers stdin et stdout avec ‘<’ et ‘>’ :
+
+On commence par traité les redirections avec <>, > le fichier est ouvert en mode écriture et avec < le fichier est ouvert en mode lecture. On doit également penser à crée un nouveau buffer qu'on appelle new_buf qui remplace buf.
+Pour tester notre programme on crée un document texte vierge. 
+
+<img width="252" alt="Capture d’écran 2024-12-08 à 17 37 41" src="https://github.com/user-attachments/assets/daa638ea-2687-461e-988f-562d99ddd0cd">
+
+Dans le terminal rien est écrit mais si on va dans le document on a bien écrit dedans : 
+
+<img width="623" alt="Capture d’écran 2024-12-08 à 17 38 33" src="https://github.com/user-attachments/assets/e25b6fc6-fd16-4e29-9176-8381fbf5d830">
+
+On va tester la commande wc -l < : 
+
+<img width="331" alt="Capture d’écran 2024-12-08 à 17 39 33" src="https://github.com/user-attachments/assets/84b6ddc8-be03-42df-bf74-239785046771">
+
+On nous renvoie bien le nombre de ligne du document 
+On va effectuer un dernier test, on modifie le document en écrivant "Hello Ensea!", et on va l'afficher avec la commande cat : 
+
+<img width="331" alt="Capture d’écran 2024-12-08 à 17 41 31" src="https://github.com/user-attachments/assets/c9d35cf7-04c3-41f7-af0b-1caf1291344f">
+
